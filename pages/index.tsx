@@ -17,13 +17,16 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        <Link href="/post/create">
-          <a>Go to post</a>
-        </Link>
+
         <p className={styles.description}>
           Get started by editing <code className={styles.code}>pages/index.tsx</code>
         </p>
-
+        <Link href="/post">
+          <a>Go to post</a>
+        </Link>
+        <Link href="/about">
+          <a>Go to about</a>
+        </Link>
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
