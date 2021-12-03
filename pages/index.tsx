@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
-import { NextPageWithLayout } from '@/models/common';
+import { NextPageWithLayout } from '@/models';
 import { MainLayout } from '@/components/layout';
 
 const Home: NextPageWithLayout = () => {
