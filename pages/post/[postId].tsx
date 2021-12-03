@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticPathsContext, GetStaticProps, GetStaticPropsContext } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import * as React from 'react';
 
@@ -7,12 +7,20 @@ export interface PostDetailProps {
 }
 
 export default function PostDetailPage(props: PostDetailProps) {
+  const router = useRouter();
   const post = props.post;
   if (!post) return null;
+  const handleClick = () => {
+    router.push({
+      pathname: '/post',
+    });
+  };
   return (
     <div>
       <h1>Post Detail</h1>
+      <p>{post.title}</p>
       <p>{post.description}</p>
+      <button onClick={handleClick}>Back</button>
     </div>
   );
 }
@@ -34,5 +42,6 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
     props: {
       post: data,
     },
+    revalidate: 5,
   };
 };

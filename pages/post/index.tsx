@@ -1,4 +1,6 @@
 import { GetStaticProps, GetStaticPropsContext } from 'next';
+import { useRouter } from 'next/dist/client/router';
+import Link from 'next/link';
 import * as React from 'react';
 
 export interface PostPageProps {
@@ -7,13 +9,26 @@ export interface PostPageProps {
 
 export default function PostPage({ posts }: PostPageProps) {
   // console.log(posts)
+  const router = useRouter();
+  const handleClick = (post: any) => {
+    router.push({
+      pathname: '/post/[postId]',
+      query: {
+        postId: post.id,
+      },
+    });
+  };
   return (
     <div>
       <h1>Post List Page</h1>
 
       <ul>
         {posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <li key={post.id}>
+            <Link href={`/post/${post.id}`}>
+              <a>{post.title}</a>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>
