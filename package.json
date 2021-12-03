@@ -12,7 +12,7 @@
   "lint-staged": {
     "*.{tsx,ts}": [
       "yarn lint --fix",
-      "git add"
+      "git add ."
     ]
   },
   "dependencies": {
