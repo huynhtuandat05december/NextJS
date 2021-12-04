@@ -3,15 +3,64 @@ import { LoginPayload } from '@/models';
 import axiosClient from './axios';
 
 export const authApi = {
-  login(payload: LoginPayload) {
-    return axiosClient.post('/login', payload);
+  async login(payload: LoginPayload) {
+    try {
+      const { data } = await axiosClient({
+        method: 'POST',
+        url: '/login',
+        data: payload,
+      });
+      return {
+        data,
+        errCode: null,
+        errDetail: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        errCode: 1,
+        errDetail: error,
+      };
+    }
   },
 
-  logout() {
-    return axiosClient.post('/logout');
+  async logout() {
+    try {
+      const { data } = await axiosClient({
+        method: 'POST',
+        url: '/logout',
+      });
+      return {
+        data,
+        errCode: null,
+        errDetail: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        errCode: 1,
+        errDetail: error,
+      };
+    }
   },
 
-  getProfile() {
-    return axiosClient.get('/profile');
+  async getProfile() {
+    try {
+      const { data } = await axiosClient({
+        method: 'GET',
+        url: '/profile',
+      });
+      return {
+        data,
+        errCode: null,
+        errDetail: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        errCode: 1,
+        errDetail: error,
+      };
+    }
   },
 };
