@@ -1,5 +1,5 @@
 import Header from '@/components/common/Header';
-import { MainLayout } from '@/components/layout';
+import { AdminLayout } from '@/components/layout/admin';
 import { GetStaticProps } from 'next';
 import * as React from 'react';
 
@@ -13,7 +13,7 @@ export default function AboutPage(props: AboutPageProps) {
     </div>
   );
 }
-AboutPage.Layout = MainLayout;
+AboutPage.Layout = AdminLayout;
 export const getStaticProps: GetStaticProps = () => {
   return {
     props: {},

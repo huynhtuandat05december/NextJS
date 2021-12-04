@@ -1,7 +1,9 @@
 import { useAuth } from '@/hooks';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 
 export default function LoginPage() {
+  const router = useRouter();
   const { profile, login, logout } = useAuth({
     revalidateOnMount: false,
   });
@@ -22,6 +24,7 @@ export default function LoginPage() {
       <p>{JSON.stringify(profile)}</p>
       <button onClick={handleLoginClick}>Login</button>
       <button onClick={handleLogoutClick}>Logout</button>
+      <button onClick={() => router.push('/about')}>Go to About</button>
     </div>
   );
 }

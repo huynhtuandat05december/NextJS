@@ -2,7 +2,7 @@ import { authApi } from '@/services';
 import useSWR from 'swr';
 import { PublicConfiguration } from 'swr/dist/types';
 
-export function useAuth(option: Partial<PublicConfiguration>) {
+export function useAuth(option?: Partial<PublicConfiguration>) {
   const {
     data: profile,
     error,
@@ -11,6 +11,7 @@ export function useAuth(option: Partial<PublicConfiguration>) {
     revalidateOnFocus: false,
     ...option,
   });
+  const firstLoading = profile === undefined && error === undefined;
 
   async function login() {
     const { data, errCode, errDetail } = await authApi.login({
@@ -26,7 +27,7 @@ export function useAuth(option: Partial<PublicConfiguration>) {
   }
   async function logout() {
     const { data, errCode, errDetail } = await authApi.logout();
-    await mutate({}, false);
+    await mutate(null, false);
     return {
       data,
       errCode,
@@ -38,5 +39,6 @@ export function useAuth(option: Partial<PublicConfiguration>) {
     error,
     login,
     logout,
+    firstLoading,
   };
 }
